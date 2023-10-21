@@ -3,8 +3,9 @@ import { useState } from 'react'
 import './App.css'
 
 import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
-import Checkin from './pages/Checkin'
-import Dashboard from './pages/Dashboard'
+import { Checkin, Dashboard, Form, Home } from './pages'
+
+
 
 
 
@@ -18,13 +19,16 @@ function App() {
           <h1>Gym</h1>
           <NavLink to="/checkin">Checkin</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/form">Form</NavLink>
         </nav>
       </header>
       <main>
         <Routes>
-          <Route index element={<Checkin />} />
+          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/checkin" element={<Checkin />} />
-          <Route path="/dashbaord" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/form" element={<Form />} />
         </Routes>
 
       </main>
