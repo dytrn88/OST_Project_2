@@ -1,0 +1,30 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.input-label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.styled-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.styled-input:focus {
+    border-color: #007bff;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 4px;
+    /* gives a small space between label and asterisk */
+}

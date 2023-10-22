@@ -1,0 +1,28 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* This assumes the container will fill the viewport height, adjust if necessary */
+    gap: 20px;
+}
+
+.styled-button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+
+    /* Making the button look a bit nicer on hover */
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Remove styles from the Link component */
+    text-decoration: none;
+    color: inherit;
+}
