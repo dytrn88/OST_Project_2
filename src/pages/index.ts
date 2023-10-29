@@ -1,3 +1,4 @@
+export * from "./calendar/Calendar.tsx"
 export * from "./checkin/Checkin.tsx"
 export * from "./dashboard/Dashboard.tsx"
 export * from "./form/Form.tsx"

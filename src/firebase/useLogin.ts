@@ -1,5 +1,3 @@
-// useLogin.ts
-
 import { useState } from "react";
 import { auth } from "./firebase"; // adjust the import based on your Firebase config location
 import { FirebaseError } from "firebase/app";
@@ -32,4 +30,8 @@ function useLogin(): [
     return [login, state];
 }
 
-export default useLogin;
+function useLogOut() {
+    return auth.signOut()
+}
+
+export { useLogin, useLogOut };

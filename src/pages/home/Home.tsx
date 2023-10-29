@@ -1,17 +1,27 @@
 import { Flex } from "@radix-ui/themes";
-import "./home.css";
-
 import { MdFormatListBulleted } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { BsCalendarDate } from "react-icons/bs";
 import { CustomCard } from "../../components";
+import "./home.css";
+import { ProfileCard } from "../../components/ProfileCard/ProfileCard";
+
 
 
 
 export function Home() {
+
+    const handleLogout = () => {
+
+    }
+
     return (
         <div>
-            <button>Sign out</button>
+            <button
+                onClick={handleLogout}>
+                Sign out WIP
+            </button>
             <div
                 style={{
                     justifyContent: "center",
@@ -22,7 +32,6 @@ export function Home() {
 
                 }}
             >
-
                 <Flex direction="row" gap="2" align="center" justify="center">
                     <CustomCard
                         title="Dashboard"
@@ -42,6 +51,12 @@ export function Home() {
                         description="Let your users check in"
                         link="/checkin"
                         Icon={AiOutlineCheckCircle}
+                    />
+                    <CustomCard
+                        title="Calendar"
+                        description="View training schedule"
+                        link="/calendar"
+                        Icon={BsCalendarDate}
                     />
                 </Flex>
             </div>
