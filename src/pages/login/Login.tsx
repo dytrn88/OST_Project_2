@@ -3,7 +3,6 @@ import { useState } from "react";
 import { StyledInput } from "../../components";
 import { StyledButton } from "../../components/StyledButton/StyledButton";
 import { login } from "../../firebase";
-import "./login.css";
 
 function Login() {
     const [email, setEmail] = useState<string>("");

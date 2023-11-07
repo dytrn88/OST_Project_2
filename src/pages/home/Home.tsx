@@ -3,25 +3,28 @@ import { MdFormatListBulleted } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsCalendarDate } from "react-icons/bs";
-import { CustomCard } from "../../components";
+import { CustomCard, Navbar } from "../../components";
 import "./home.css";
 import { ProfileCard } from "../../components/ProfileCard/ProfileCard";
+import { useLogout } from "../../firebase";
+import { StyledButton } from "../../components/StyledButton/StyledButton";
 
 
 
 
 export function Home() {
 
-    const handleLogout = () => {
-
-    }
+    const [logout, logoutState] = useLogout();
 
     return (
         <div>
-            <button
-                onClick={handleLogout}>
-                Sign out WIP
-            </button>
+            <StyledButton
+                text="Logout"
+                onClick={() => {
+                    logout();
+                }}
+                disabled={logoutState.isLoading}
+            ></StyledButton>
             <div
                 style={{
                     justifyContent: "center",
@@ -32,6 +35,7 @@ export function Home() {
 
                 }}
             >
+
                 <Flex direction="row" gap="2" align="center" justify="center">
                     <CustomCard
                         title="Dashboard"

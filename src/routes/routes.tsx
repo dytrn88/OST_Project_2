@@ -1,38 +1,32 @@
-import { createBrowserRouter, NavLink, RouterProvider } from "react-router-dom";
-import { Calendar, Checkin, Dashboard, Form, Home, Login } from "../pages";
-import { User } from "firebase/auth";
-import useAuth from "../firebase/useAuth";
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+
+import { Calendar, Checkin, Dashboard, Form, Home, Login } from '../pages';
+import { User } from 'firebase/auth';
+import useAuth from '../firebase/useAuth';
+import { Navbar } from '../components';
 
 function createAuthRouter(user: User | null) {
-    return createBrowserRouter([
-        {
-            path: "/",
-            element: user ? <Home /> : <Login />,
-        },
-        {
-            path: "/form",
-            element: <Form />,
-        },
-        {
-            path: "/dashboard",
-            element: <Dashboard />,
-        },
-        {
-            path: "/checkin",
-            element: <Checkin />,
-        },
-        {
-            path: "/calendar",
-            element: <Calendar />,
-        },
-    ]);
+    return (
+        <Routes>
+            <Route path="/" element={user ? <Home /> : <Login />} />
+            <Route path="/form" element={<Form />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/checkin" element={<Checkin />} />
+            <Route path="/calendar" element={<Calendar />} />
+        </Routes>
+    );
 }
 
-const RouterProviderInstance = () => {
+const AppRouter = () => {
     const user = useAuth();
-    const router = createAuthRouter(user);
+    console.log('User:', user);
 
-    return <RouterProvider router={router} />;
+    return (
+        <BrowserRouter>
+            <Navbar />
+            {createAuthRouter(user)}
+        </BrowserRouter>
+    );
 };
 
-export default RouterProviderInstance;
+export default AppRouter;
