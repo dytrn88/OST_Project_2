@@ -9,8 +9,8 @@ function createAuthRouter(user: User | null) {
     return (
         <Routes>
             <Route path="/" element={user ? <Home /> : <Login />} />
-            <Route path="/form" element={<Form />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/form" element={<Form />} />
             <Route path="/checkin" element={<Checkin />} />
             <Route path="/calendar" element={<Calendar />} />
         </Routes>
@@ -19,7 +19,6 @@ function createAuthRouter(user: User | null) {
 
 const AppRouter = () => {
     const user = useAuth();
-    console.log('User:', user);
 
     return (
         <BrowserRouter>

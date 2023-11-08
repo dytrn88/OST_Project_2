@@ -3,14 +3,11 @@ import { MdFormatListBulleted } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsCalendarDate } from "react-icons/bs";
-import { CustomCard, Navbar } from "../../components";
+import { CustomCard } from "../../components";
 import "./home.css";
-import { ProfileCard } from "../../components/ProfileCard/ProfileCard";
+
 import { useLogout } from "../../firebase";
 import { StyledButton } from "../../components/StyledButton/StyledButton";
-
-
-
 
 export function Home() {
 
@@ -18,13 +15,20 @@ export function Home() {
 
     return (
         <div>
-            <StyledButton
-                text="Logout"
-                onClick={() => {
-                    logout();
-                }}
-                disabled={logoutState.isLoading}
-            ></StyledButton>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end"
+                }}>
+                <StyledButton
+
+                    text="Logout"
+                    onClick={() => {
+                        logout();
+                    }}
+                    disabled={logoutState.isLoading}
+                ></StyledButton>
+            </div>
             <div
                 style={{
                     justifyContent: "center",
