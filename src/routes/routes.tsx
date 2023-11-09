@@ -1,5 +1,4 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
 import { Calendar, Checkin, Dashboard, Form, Home, Login } from '../pages';
 import { User } from 'firebase/auth';
 import useAuth from '../firebase/useAuth';
