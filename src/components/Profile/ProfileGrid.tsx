@@ -1,14 +1,20 @@
-import React from 'react'
-import ProfileCard from './ProfileCard';
+import React from "react";
+import ProfileCard from "../Profile/ProfileCard";
 import "./ProfileGrid.css";
+import { Session } from "../../types";
 
+interface GridProps {
+    profiles: Session[];
+}
 
-const ProfileGrid = () => (
-    <div className="profile-grid">
-        <ProfileCard />
+const ProfileGrid: React.FC<GridProps> = ({ profiles }) => {
+    return (
+        <div className="profile-grid">
+            {profiles.map((profile, index) => (
+                <ProfileCard key={index} {...profile} />
+            ))}
+        </div>
+    );
+};
 
-    </div>
-
-);
-
-export { ProfileGrid }
+export { ProfileGrid };

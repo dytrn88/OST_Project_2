@@ -1,0 +1,15 @@
+.styled-dropdown {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.styled-dropdown:focus {
+  border-color: #007bff;
+}
