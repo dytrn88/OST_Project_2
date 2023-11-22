@@ -1,7 +1,7 @@
 import React from "react";
+import { Session } from "../../types";
 import ProfileCard from "../Profile/ProfileCard";
 import "./ProfileGrid.css";
-import { Session } from "../../types";
 
 interface GridProps {
     profiles: Session[];

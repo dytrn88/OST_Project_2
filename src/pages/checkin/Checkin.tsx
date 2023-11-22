@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from "react";
+import { BackButton, Spacer } from "@/components";
+import { lan } from "@/i18n";
+import { checkinUser, fetchUsers, getClassesFromToday } from "@/services";
+import { ScheduleEntry, User } from "@/types";
+import React, { useMemo, useState } from "react";
 import Select from "react-select";
-import { BackButton, Spacer } from "../../components";
-import { lan } from "../../i18n";
-import { checkinUser, fetchUsers, getClassesFromToday } from "../../services";
-import { ScheduleEntry, User } from "../../types";
 
 const Checkin: React.FC = () => {
     const [classes, today] = getClassesFromToday();
@@ -77,3 +77,4 @@ const Checkin: React.FC = () => {
 };
 
 export { Checkin };
+

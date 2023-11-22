@@ -1,22 +1,20 @@
-import { useState, useRef, MouseEvent } from "react";
-import "./form.css";
-
-/* import { ABOS, initalFormData } from "@/data"; */
 import {
-    StyledInput,
+    BackButton,
     ImageUploader,
+    Spacer,
     StyledButton,
     StyledDropdown,
-    Spacer,
+    StyledInput,
     Switcher,
-    BackButton,
-} from "../../components";
+} from "@/components";
+import { ABOS, initalFormData } from "@/data";
+import { lan } from "@/i18n";
+import { createUser } from "@/services";
+import { User } from "@/types";
+import { validateForm } from "@/utils";
 import { Card, Flex, Text } from "@radix-ui/themes";
-import { lan } from "../../i18n";
-import { ABOS, initalFormData } from "../../data";
-import { createUser } from "../../services";
-import { User } from "../../types";
-import { validateForm } from "../../utils";
+import { MouseEvent, useRef, useState } from "react";
+import "./form.css";
 
 export function Form() {
     const [formValid, setFormValid] = useState<boolean>(false);

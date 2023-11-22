@@ -1,6 +1,6 @@
+import { Select } from "@radix-ui/themes";
 import React from "react";
 import "./StyledDropdown.css";
-import { Select } from "@radix-ui/themes";
 
 interface Option {
   value: string;

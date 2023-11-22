@@ -1,10 +1,10 @@
+import { BackButton } from "@/components";
+import { ProfileGrid } from "@/components/Profile/ProfileGrid";
+import { getClassesFromToday } from "@/services";
+import useFetchSessions from "@/services/firebaseHook";
+import { ScheduleEntry } from "@/types";
 import React, { useState } from "react";
 import Select from "react-select";
-import { ScheduleEntry } from "../../types";
-import { ProfileGrid } from "../../components/Profile/ProfileGrid";
-import { BackButton } from "../../components";
-import useFetchSessions from "../../services/firebaseHook";
-import { getClassesFromToday } from "../../services";
 
 
 const Dashboard: React.FC = () => {
@@ -35,3 +35,4 @@ const Dashboard: React.FC = () => {
 };
 
 export { Dashboard };
+

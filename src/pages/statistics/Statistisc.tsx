@@ -6,7 +6,7 @@ export function Calendar() {
 
     return (
         <div className="home">
-            <h2>Calendar</h2>
+            <h2>Statistics</h2>
             <BackButton />
 
         </div>

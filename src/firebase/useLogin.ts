@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { auth } from "./firebase"; // adjust the import based on your Firebase config location
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "./firebase"; // adjust the import based on your Firebase config location
 
 interface LoginState {
     isLoading: boolean;
@@ -54,3 +54,4 @@ function useLogout(): [
 
 
 export { useLogin, useLogout };
+

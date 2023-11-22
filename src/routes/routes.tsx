@@ -1,8 +1,8 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { Calendar, Checkin, Dashboard, Form, Home, Login } from '../pages';
 import { User } from 'firebase/auth';
-import useAuth from '../firebase/useAuth';
-import { Navbar } from '../components';
+import useAuth from '@/firebase/useAuth';
+import { Navbar } from '@/components';
 
 function createAuthRouter(user: User | null) {
     return (

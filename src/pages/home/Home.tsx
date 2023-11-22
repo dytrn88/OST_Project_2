@@ -1,13 +1,12 @@
+import { CustomCard } from "@/components";
+import { StyledButton } from "@/components/StyledButton/StyledButton";
+import { useLogout } from "@/firebase";
 import { Flex } from "@radix-ui/themes";
-import { MdFormatListBulleted } from "react-icons/md";
-import { RxDashboard } from "react-icons/rx";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsCalendarDate } from "react-icons/bs";
-import { CustomCard } from "../../components";
+import { MdFormatListBulleted } from "react-icons/md";
+import { RxDashboard } from "react-icons/rx";
 import "./home.css";
-
-import { useLogout } from "../../firebase";
-import { StyledButton } from "../../components/StyledButton/StyledButton";
 
 export function Home() {
 

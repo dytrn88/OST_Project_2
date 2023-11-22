@@ -1,8 +1,8 @@
 import { Card, Flex } from "@radix-ui/themes";
 import { useState } from "react";
-import { StyledInput } from "../../components";
-import { StyledButton } from "../../components/StyledButton/StyledButton";
-import { login } from "../../firebase";
+import { StyledInput } from "@/components";
+import { StyledButton } from "@/components/StyledButton/StyledButton";
+import { login } from "@/firebase";
 
 function Login() {
     const [email, setEmail] = useState<string>("");

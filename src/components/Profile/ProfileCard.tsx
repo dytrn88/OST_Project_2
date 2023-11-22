@@ -1,9 +1,9 @@
-import React from 'react';
-import { Card, Flex, Text } from "@radix-ui/themes";
 import * as Avatar from '@radix-ui/react-avatar';
-import "./ProfileCard.css"
+import { Card, Flex, Text } from "@radix-ui/themes";
+import React from 'react';
 import { AboStatus } from '..';
 import { Session } from '../../types';
+import "./ProfileCard.css";
 
 
 

@@ -1,7 +1,7 @@
-import { ElementType } from "react";
-import "./card.css";
 import { Card, Flex, Text } from "@radix-ui/themes";
+import { ElementType } from "react";
 import { Link } from "react-router-dom";
+import "./card.css";
 
 type CardProps = {
     title: string;

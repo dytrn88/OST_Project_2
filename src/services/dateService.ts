@@ -1,5 +1,5 @@
-import { schedule } from "../data";
-import { ScheduleEntry } from "../types";
+import { schedule } from "@/data";
+import { ScheduleEntry } from "@/types";
 
 type ScheduleResult = [ScheduleEntry[], string];
 

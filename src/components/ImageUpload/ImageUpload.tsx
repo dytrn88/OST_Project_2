@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./ImageUpload.css";
 import { handleFileUpload } from "../../services";
+import "./ImageUpload.css";
 
 
 interface ImageUploadProps {

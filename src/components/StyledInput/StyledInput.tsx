@@ -1,6 +1,6 @@
+import { TextField } from "@radix-ui/themes";
 import React from "react";
 import "./StyledInput.css";
-import { TextField } from "@radix-ui/themes";
 
 interface Props {
     id: string;

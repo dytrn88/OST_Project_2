@@ -1,8 +1,8 @@
-import { db } from "../firebase/firebase";
-import { Session } from "../types";
+import { db } from "@/firebase/firebase";
+import { Session } from "@/types";
 import { FirebaseError } from "firebase/app";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getTodayStart } from ".";
 
 function useFetchSessions(session: string) {
