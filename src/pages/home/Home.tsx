@@ -8,6 +8,9 @@ import { MdFormatListBulleted } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import "./home.css";
 
+import { FaUserGear } from "react-icons/fa6";
+
+
 export function Home() {
 
     const [logout, logoutState] = useLogout();
@@ -19,14 +22,7 @@ export function Home() {
                     display: "flex",
                     justifyContent: "flex-end"
                 }}>
-                <StyledButton
 
-                    text="Logout"
-                    onClick={() => {
-                        logout();
-                    }}
-                    disabled={logoutState.isLoading}
-                ></StyledButton>
             </div>
             <div
                 style={{
@@ -41,24 +37,30 @@ export function Home() {
 
                 <Flex direction="row" gap="2" align="center" justify="center">
                     <CustomCard
-                        title="Dashboard"
-                        description="Check who is checked in"
-                        link="/dashboard"
-                        Icon={RxDashboard}
-
-                    />
-                    <CustomCard
-                        title="Form"
-                        description="Register new clients"
-                        link="/form"
-                        Icon={MdFormatListBulleted}
-                    />
-                    <CustomCard
                         title="Checkin"
                         description="Let your users check in"
                         link="/checkin"
                         Icon={AiOutlineCheckCircle}
                     />
+                    <CustomCard
+                        title="Dashboard"
+                        description="Check who is checked in"
+                        link="/dashboard"
+                        Icon={RxDashboard}
+                    />
+                    <CustomCard
+                        title="Form"
+                        description="Register new customers"
+                        link="/form"
+                        Icon={MdFormatListBulleted}
+                    />
+                    <CustomCard
+                        title="User admin"
+                        description="Manage registered users"
+                        link="/admin"
+                        Icon={FaUserGear}
+                    />
+
                     <CustomCard
                         title="Calendar"
                         description="View training schedule"
