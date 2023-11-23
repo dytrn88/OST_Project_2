@@ -5,6 +5,13 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getTodayStart } from ".";
 
+const querySnapshotTest = await getDocs(collection(db, "cities"));
+querySnapshotTest.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+
+
 export const fetchSessionUsers = async (session: string) => {
   try {
     const q = query(
@@ -50,7 +57,14 @@ export const createUser = async (user: User) => {
 
 export const fetchUsers = async () => {
   const querySnapshot = await getDocs(collection(db, "users"));
-  return querySnapshot.docs.map((doc) => doc.data() as User);
+  const usersData = querySnapshot.docs.map((doc) => {
+
+    const userData = doc.data() as User;
+    console.log("Document ID:", doc.id);
+    return { id: doc.id, ...userData };
+  });
+
+  return usersData;
 };
 
 export const checkinUser = async (session: string, userData: User) => {
