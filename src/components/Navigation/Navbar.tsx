@@ -41,7 +41,9 @@ const Navbar = () => {
 
                 <NavigationMenu.Item>
                     <NavigationMenu.Trigger className="NavigationMenuTrigger">
-                        User name <CaretDownIcon className="CaretDown" aria-hidden />
+                        User name
+
+                        <CaretDownIcon className="CaretDown" aria-hidden />
                     </NavigationMenu.Trigger>
                     <NavigationMenu.Content className="NavigationMenuContent">
                         <ul className="List two">

@@ -1,22 +1,43 @@
 import { BackButton } from "@/components";
-import { fetchUsers } from "@/services";
-import { User } from "@/types";
+import EditUserModal from "@/components/EditUserModal/EditUserModal";
+import { useEditUsers, useFetchUsers } from "@/services";
 import { Table } from "@radix-ui/themes";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 
 const AdminUsers: React.FC = () => {
-    const [users, setUsers] = useState<User[]>([]);
-    console.log(users)
+    const users = useFetchUsers();
+    console.log(users);
+    const { updateUser } = useEditUsers();
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [modalData, setModalData] = useState<{
+        userId: string | null;
+        userData: any | null
+    }>
+        ({
+            userId: null,
+            userData: null
+        });
 
-    useEffect(() => {
-        async function fetchData() {
-            console.log()
-            const res = await fetchUsers();
-            setUsers(res);
-        }
-        fetchData();
-    }, []);
+
+
+    const handleEdit = async (id: string) => {
+        const userData = users.find(user => user.id === id)
+
+        setModalOpen(true);
+        setModalData({ userId: id, userData });
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
+    const handleSaveUser = () => {
+        // Placeholder for save logic
+        console.log('Save user logic');
+        console.log(users)
+        handleCloseModal();
+    };
 
     return (
 
@@ -32,8 +53,9 @@ const AdminUsers: React.FC = () => {
                         <Table.ColumnHeaderCell>Edit</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Group</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Abo Status</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Abo type</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Level</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Session counter</Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -42,17 +64,29 @@ const AdminUsers: React.FC = () => {
                         <Table.Row key={user.id}>
 
                             <Table.RowHeaderCell >
-                                <MdOutlineEdit />
+                                <MdOutlineEdit
+                                    onClick={() => handleEdit(user.id)}
+                                />
+
                             </Table.RowHeaderCell>
                             <Table.Cell>{`${user.firstName} ${user.lastName}`}</Table.Cell>
                             <Table.Cell>{`${user.email} `}</Table.Cell>
-                            <Table.Cell>{`${user.abo.name} `}</Table.Cell>
-                            <Table.Cell>Valid / expired</Table.Cell>
+                            <Table.Cell>{`${user.abo} `}</Table.Cell>
+                            <Table.Cell>{`${user.status} `}</Table.Cell>
+                            <Table.Cell>999</Table.Cell>
                         </Table.Row>
                     ))}
-
                 </Table.Body>
             </Table.Root>
+
+            {isModalOpen && (
+                <EditUserModal
+                    userData={modalData.userData}
+                    onClose={handleCloseModal}
+                    onSave={handleSaveUser}
+                    updateUser={updateUser}
+                />
+            )}
 
         </div >
     );

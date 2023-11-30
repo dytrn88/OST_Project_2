@@ -1,16 +1,9 @@
 import { ABOS } from "@/data";
 import { db } from "@/firebase/firebase";
 import { Session, User } from "@/types";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, query, where, writeBatch } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getTodayStart } from ".";
-
-const querySnapshotTest = await getDocs(collection(db, "cities"));
-querySnapshotTest.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-
 
 export const fetchSessionUsers = async (session: string) => {
   try {
@@ -54,6 +47,26 @@ export const createUser = async (user: User) => {
     console.log(doc.id, " => ", doc.data());
   });
 };
+
+const expandStatusField = async () => {
+  const q = collection(db, 'users');
+  const querySnapshot = await getDocs(q);
+
+  const batch = writeBatch(db);
+
+  querySnapshot.forEach((document) => {
+    const userRef = doc(db, 'users', document.id); // Correcting the reference creation
+    const userData = document.data();
+    if (!userData.status) {
+      batch.update(userRef, { status: 'Enter Level' });
+    }
+  });
+
+  await batch.commit(); // Correcting the function name to 'commit'
+};
+
+// Call this function to update the status field for existing documents
+expandStatusField();
 
 export const fetchUsers = async () => {
   const querySnapshot = await getDocs(collection(db, "users"));

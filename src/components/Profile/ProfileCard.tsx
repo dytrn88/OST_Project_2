@@ -5,10 +5,6 @@ import { AboStatus } from '..';
 import { Session } from '../../types';
 import "./ProfileCard.css";
 
-
-
-
-
 const ProfileCard: React.FC<Session> = ({ userData }) => {
     console.log(userData);
     return (

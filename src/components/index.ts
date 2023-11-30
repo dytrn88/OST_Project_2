@@ -11,3 +11,4 @@ export * from "./Switcher/Switcher";
 export * from "./Navigation/BackButton"
 export * from "./Navigation/BackButton"
 export * from "./Navigation/Navbar"
+export * from "./EditUserModal/EditUserModal"

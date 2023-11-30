@@ -1,7 +1,7 @@
 import { BackButton } from "@/components";
 import { ProfileGrid } from "@/components/Profile/ProfileGrid";
-import { getClassesFromToday } from "@/services";
-import useFetchSessions from "@/services/firebaseHook";
+import { getClassesFromToday, useFetchSessions } from "@/services";
+
 import { ScheduleEntry } from "@/types";
 import React, { useState } from "react";
 import Select from "react-select";

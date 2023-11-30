@@ -21,6 +21,7 @@ function createAuthRouter(user: User | null) {
 const AppRouter = () => {
     const user = useAuth();
 
+
     return (
         <BrowserRouter>
             {user && <Navbar />} {/* Render Navbar only when user is authenticated */}

@@ -1,11 +1,11 @@
 import { db } from "@/firebase/firebase";
-import { Session } from "@/types";
+import { Session, User } from "@/types";
 import { FirebaseError } from "firebase/app";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { getTodayStart } from ".";
+import { fetchUsers, getTodayStart } from ".";
 
-function useFetchSessions(session: string) {
+export function useFetchSessions(session: string) {
   const [data, setData] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<FirebaseError>();
@@ -40,4 +40,39 @@ function useFetchSessions(session: string) {
   return { data, loading, error };
 }
 
-export default useFetchSessions;
+export const useFetchUsers = () => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => { // use useMemo?
+    const fetchData = async () => {
+      try {
+        const res = await fetchUsers(); // replace with your actual API function
+        setUsers(res);
+
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return users;
+};
+
+export const useEditUsers = () => {
+  const updateUser = async (id: string, updatedData: Partial<User>,) => {
+    try {
+      // Update the user data in Firestore
+      await updateDoc(doc(db, 'users', id), updatedData);
+      console.log('User data updated in Firestore');
+
+      // Trigger the callback function if provided
+
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
+  };
+
+  return { updateUser };
+};
