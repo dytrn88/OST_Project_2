@@ -1,7 +1,7 @@
 import { ABOS } from "@/data";
 import { db } from "@/firebase/firebase";
 import { Session, User } from "@/types";
-import { addDoc, collection, doc, getDocs, query, where, writeBatch } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, increment, query, updateDoc, where, writeBatch } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { getTodayStart } from ".";
 
@@ -48,24 +48,23 @@ export const createUser = async (user: User) => {
   });
 };
 
-const expandStatusField = async () => {
+export const expandStatusField = async () => {
   const q = collection(db, 'users');
   const querySnapshot = await getDocs(q);
 
   const batch = writeBatch(db);
 
   querySnapshot.forEach((document) => {
-    const userRef = doc(db, 'users', document.id); // Correcting the reference creation
+    const userRef = doc(db, 'users', document.id);
     const userData = document.data();
     if (!userData.status) {
       batch.update(userRef, { status: 'Enter Level' });
     }
   });
 
-  await batch.commit(); // Correcting the function name to 'commit'
+  await batch.commit();
 };
 
-// Call this function to update the status field for existing documents
 expandStatusField();
 
 export const fetchUsers = async () => {
@@ -73,7 +72,7 @@ export const fetchUsers = async () => {
   const usersData = querySnapshot.docs.map((doc) => {
 
     const userData = doc.data() as User;
-    console.log("Document ID:", doc.id);
+
     return { id: doc.id, ...userData };
   });
 
@@ -118,6 +117,19 @@ export const checkinUser = async (session: string, userData: User) => {
       errorMessage = "Unknown error";
     }
     return { status: "error", message: errorMessage };
+  }
+};
+
+export const countCheckinUser = async (userEmail: string) => {
+  try {
+    const q = query(collection(db, "sessions"), where("userData.email", "==", userEmail));
+    const querySnapshot = await getDocs(q);
+    const checkinCount = querySnapshot.size;
+
+    return checkinCount;
+  } catch (error) {
+    console.error("Error getting user checkin count:", error);
+    return -1; // Return -1 to indicate an error
   }
 };
 

@@ -1,9 +1,8 @@
 import { User } from '@/types';
 import { Flex } from '@radix-ui/themes';
 import React, { useEffect, useState } from 'react';
-import { Spacer, StyledButton } from '..';
 import './EditUserModal.css';
-import * as Form from '@radix-ui/react-form';
+
 
 interface EditUserProps {
     userData: any | null;
@@ -104,7 +103,6 @@ const EditUserModal: React.FC<EditUserProps> = ({ userData, onClose, onSave, upd
                         />
                     </label>
 
-                    <Spacer></Spacer>
                     <Flex direction="row" gap="2" align="center" justify="center">
                         <button
                             className="Button"

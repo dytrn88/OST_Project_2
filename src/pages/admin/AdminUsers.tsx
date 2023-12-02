@@ -1,6 +1,6 @@
 import { BackButton } from "@/components";
 import EditUserModal from "@/components/EditUserModal/EditUserModal";
-import { useEditUsers, useFetchUsers } from "@/services";
+import { useEditUsers, useFetchCountCheckinUser, useFetchUsers } from "@/services";
 import { Table } from "@radix-ui/themes";
 import React, { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
@@ -9,6 +9,7 @@ const AdminUsers: React.FC = () => {
     const users = useFetchUsers();
     console.log(users);
     const { updateUser } = useEditUsers();
+    const countSession = useFetchCountCheckinUser();
     const [isModalOpen, setModalOpen] = useState(false);
     const [modalData, setModalData] = useState<{
         userId: string | null;
@@ -18,8 +19,6 @@ const AdminUsers: React.FC = () => {
             userId: null,
             userData: null
         });
-
-
 
     const handleEdit = async (id: string) => {
         const userData = users.find(user => user.id === id)
@@ -73,7 +72,7 @@ const AdminUsers: React.FC = () => {
                             <Table.Cell>{`${user.email} `}</Table.Cell>
                             <Table.Cell>{`${user.abo} `}</Table.Cell>
                             <Table.Cell>{`${user.status} `}</Table.Cell>
-                            <Table.Cell>999</Table.Cell>
+                            <Table.Cell>{countSession[user.id]}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>

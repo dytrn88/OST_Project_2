@@ -3,7 +3,7 @@ import { Session, User } from "@/types";
 import { FirebaseError } from "firebase/app";
 import { collection, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { fetchUsers, getTodayStart } from ".";
+import { countCheckinUser, fetchUsers, getTodayStart } from ".";
 
 export function useFetchSessions(session: string) {
   const [data, setData] = useState<Session[]>([]);
@@ -76,3 +76,37 @@ export const useEditUsers = () => {
 
   return { updateUser };
 };
+
+export const displayCountCheckinUser = async (userEmail: string) => {
+  const checkinCount = await countCheckinUser(userEmail);
+
+  if (checkinCount >= 0) {
+    console.log(`User with email ${userEmail} has checked in ${checkinCount} times.`);
+    // Display or use the checkinCount as needed
+  } else {
+    console.error("Failed to get user checkin count.");
+    // Handle the error case
+  }
+};
+
+export function useFetchCountCheckinUser() {
+  const users = useFetchUsers();
+  const [countSession, setCountSession] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const fetchCheckinUserCounter = async () => {
+      const counter: Record<string, number> = {};
+
+      for (const user of users) {
+        const checkinCount = await countCheckinUser(user.email);
+        counter[user.id] = checkinCount;
+      }
+
+      setCountSession(counter);
+    };
+
+    fetchCheckinUserCounter();
+  }, [users]);
+
+  return countSession;
+}

@@ -98,7 +98,7 @@ p {
 
 .NavigationMenuIndicator {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     height: 10px;
     top: 100%;
